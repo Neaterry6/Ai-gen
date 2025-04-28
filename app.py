@@ -1,20 +1,8 @@
 from flask import Flask, request, jsonify
 import os
-from chat_ai import chat_response
 from image_generator import generate_image
 
 app = Flask(__name__)
-
-@app.route("/chat", methods=["POST"])
-def chat():
-    """Handles chat requests via Local AI"""
-    user_input = request.json.get("text", "")
-    
-    if not user_input:
-        return jsonify({"error": "❌ No text provided!"}), 400
-    
-    response = chat_response(user_input)
-    return jsonify({"response": response})
 
 @app.route("/generate-image", methods=["POST"])
 def generate_image_api():
@@ -28,5 +16,5 @@ def generate_image_api():
     return jsonify({"image": image_path})
 
 if __name__ == "__main__":
-    PORT = int(os.getenv("PORT", 5000))
+    PORT = int(os.getenv("PORT", 5000))  # ✅ Uses assigned port or defaults to 5000
     app.run(host="0.0.0.0", port=PORT, debug=True)

@@ -4,3 +4,6 @@ transformers
 diffusers
 numpy
 Pillow
+accelerate
+huggingface_hub[hf_xet]
+hf_xet
